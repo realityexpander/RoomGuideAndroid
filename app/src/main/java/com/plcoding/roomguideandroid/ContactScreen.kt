@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -69,6 +70,7 @@ fun ContactScreen(
                     }
                 }
             }
+
             items(state.contacts) { contact ->
                 Row(
                     modifier = Modifier.fillMaxWidth()
@@ -94,4 +96,30 @@ fun ContactScreen(
             }
         }
     }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFF000000,
+    device = "id:pixel"
+)
+@Composable
+fun ContactScreenPreview() {
+    ContactScreen(
+        state = ContactState(
+            contacts = listOf(
+                Contact(
+                    firstName = "John",
+                    lastName = "Doe",
+                    phoneNumber = "1234567890"
+                ),
+                Contact(
+                    firstName = "Jane",
+                    lastName = "Doe",
+                    phoneNumber = "0987654321"
+                )
+            ),
+            isAddingContact = false,
+            sortType = SortType.FIRST_NAME
+        ),
+        onEvent = {}
+    )
 }
